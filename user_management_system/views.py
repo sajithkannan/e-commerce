@@ -13,4 +13,7 @@ def customer(request):
 def seller(request):
   return render(request,"seller_register.html")
 
+def order(request):
+  return render(request,"order.html")
+
 
