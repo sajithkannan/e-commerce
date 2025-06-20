@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block title %}
+  login
+{% endblock title %}
+{% block content %}
+
+<div style="margin-top:7%;margin-bottom:5%;display:flex;justify-content:center">
+
+  <div class="container mt-5">
+  <h2 class="text-center mb-4"> <u>  login your profile </u></h2>
+  <form>
+
+    <!-- Email -->
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" class="form-control" id="email" placeholder="Enter Email" required>
+    </div>
+
+    <!-- Phone -->
+    <div class="mb-3">
+      <label for="phone" class="form-label">Phone</label>
+      <input type="text" class="form-control" id="phone" placeholder="Enter Phone Number" required>
+    </div>
+
+    <!-- Password -->
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" id="password" placeholder="Enter Password" required>
+    </div>
+
+    <!-- Role -->
+    <div class="mb-3">
+      <label for="role" class="form-label">Role</label>
+      <select class="form-select" id="role" required>
+        <option selected disabled>Select Role</option>
+        <option value="Customer">Customer</option>
+        <option value="Seller">Seller</option>
+      </select>
+    </div>
+
+    <!-- Submit Button -->
+    <div class=" d-flex justify-content-space-around mt-5">
+      <button type="submit" class="btn btn-primary me-5 fw-bold fs-5" style="width:200px;font-style:italic" > login </button>
+      <a href="" class="fs-5"> forgot password </a>
+    </div>
+
+  </form>
+</div>
+</div>
+
+{% endblock content %}

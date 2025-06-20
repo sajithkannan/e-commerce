@@ -1,0 +1,36 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+  <div class="container py-4">
+
+  <h2 class="text-center mb-4">Payment History</h2>
+
+  <!-- Payment Card Example -->
+  <div class="payment-card p-3 bg-white shadow-sm">
+    <div class="row">
+      <div class="col-md-8">
+        <h5 class="mb-2">Payment ID: 101</h5>
+        <p class="mb-1"><strong>Product ID:</strong> 205</p>
+        <p class="mb-1"><strong>Customer ID:</strong> 18</p>
+        <p class="mb-1"><strong>Payment Method:</strong> Credit Card</p>
+        <p class="mb-1"><strong>Amount:</strong> ₹2500.00</p>
+        <p class="mb-1"><strong>Payment Date:</strong> 2025-06-18 14:30</p>
+        <p class="mb-1"><strong>Status:</strong> 
+          <span class="payment-status paid">Paid</span>
+        </p>
+      </div>
+      <div class="col-md-4 text-end">
+        <p class="mb-1 text-muted"><small>Created: 2025-06-18 14:00</small></p>
+        <p class="mb-1 text-muted"><small>Updated: 2025-06-18 14:35</small></p>
+        <button class="btn btn-danger btn-sm">Delete</button>
+      </div>
+    </div>
+  </div>
+  <!-- End Payment Card Example -->
+
+</div>
+
+
+
+{% endblock %}

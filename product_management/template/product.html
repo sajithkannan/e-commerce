@@ -1,0 +1,32 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+  <div class="container py-4">
+
+  <h2 class="text-center mb-4">Product List</h2>
+
+  <div class="row">
+    <!-- Product Card -->
+    <div class="col-md-4">
+      <div class="product-card shadow-sm">
+        <img src="https://via.placeholder.com/350x220" class="w-100" alt="Product Image">
+        <div class="p-3">
+          <h5>Wireless Earbuds</h5>
+          <p class="price">₹2499.00</p>
+          <p class="mb-1"><strong>Stock:</strong> 15</p>
+          <p class="mb-1"><strong>Mfg Date:</strong> 2024-05-01</p>
+          <p class="mb-1"><strong>Expiry Date:</strong> 2026-05-01</p>
+          <p class="mb-2"><strong>Status:</strong> 
+            <span class="text-success">Available</span>
+          </p>
+          <button class="btn btn-primary w-100">View Product</button>
+        </div>
+      </div>
+    </div>
+    <!-- End Product Card -->
+  </div>
+
+</div>
+
+{% endblock %}
