@@ -1,5 +1,7 @@
 from django.db import models
 from user_management_system.models import CustomUser
+import datetime
+import os
 
 # Create your models here.
 class product(models.Model):
@@ -14,6 +16,7 @@ class product(models.Model):
   expiry_date = models.DateField()
   is_expired = models.BooleanField()
   discount_percentage = models.IntegerField(max_length=5)
+  trending=models.BooleanField(default=False,help_text="0-Default,1-Trending")
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
 

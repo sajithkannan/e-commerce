@@ -1,44 +1,49 @@
-{% extends 'base.html'%}
+{% extends 'base.html' %}
+{% load static %}
   {% block title %}
       wow
   {% endblock title %} 
 {% block content %}
 <div class="image-container position-relative">
-   <img src="../static/images/index_bg.jpg" alt="index_bg" class="w-100 img-fluid d-block">
+   <img src="{% static 'images/index_bg.jpg' %}" alt="index_bg" class="w-100 img-fluid d-block">
 <div class="position-absolute top-50 start-50  p-4  text-center translate-middle  w-75 w-md-50" style="border-radius:50px ;background-color: #f4f2e2;">
-  <h1 id="shopping" class="bi bi-cart4 text-dark" style="font-size:50px;font-style:italic"><span style="text-decoration: underline; text-decoration-color:red;">GET START YOUR FAVORITE SHOPPING....</span>
+  <h1 id="shopping" class="bi bi-cart4 text-dark" style="font-size:50px;"> GET START YOUR FAVORITE SHOPPING
 </h1>
- <a href="{% url 'login' %}" class="btn btn-dark ps-5 pe-5 mt-5"> continue to shop </a>
+<div>
+   <a href="{% url 'login' %}" class="btn btn-dark ps-5 pe-5 mt-5"> Explore Now </a>
+</div>
 </div>
  </div> 
 
  <!--about as-->
-<div id="about-us" class="container-fluid bg-success">
-<div class="row col-12 text-center text-light p-5">
-  <h2 class="bg-dark p-2"><u>About-us </u></h2>
+<div id="about-us" class="container-fluid" style="z-index:100; top:0; background-color:rgb(203, 186, 177);">
+<div class="row col-12 text-center p-5 d-flex justify-content-center">
+<div class="w-50">
+ <h2 class=" bg-dark text-light"> About-us </h2>
+</div>
 </div>
   <div class="row">
-    <div class="col-6 text-center">
+    <div class="col-6">
       <div>
-        <h2 style="font-style:italic"><u> E-commerce</u></h2>
-        <p class="text-light" style="font-weight:bold"> E-commerce (electronic commerce) is the buying and selling of goods and services over the internet. It allows businesses and customers to trade products, make payments, and manage orders online without physical stores. E-commerce platforms can include online shops, marketplaces, and service booking sites like Amazon, Flipkart, or Myntra.</p>
+        <h2 class="  " style=" "><u> E-commerce</u></h2>
+        <p class=" " style="font-weight:bold color:rgb(119, 114, 112); font-size:18px;"> E-commerce (electronic commerce) is the buying and selling of goods and services over the internet. It allows businesses and customers to trade products, make payments, and manage orders online without physical stores. E-commerce platforms can include online shops, marketplaces, and service booking sites like Amazon, Flipkart, or Myntra.</p>
       </div>
 
       <div>
-        <h2 style="font-style:italic"><u> Global Reach</u></h2>
-        <p class="text-light" style="font-weight:bold">Online stores are typically open around the clock, providing flexibility for consumers with busy schedules </p>
-      </div>
-
-
-      <div>
-        <h2 style="font-style:italic"><u> Scalability and Flexibility </u></h2>
-        <p class="text-light" style="font-weight:bold">E-commerce platforms can easily scale up or down to meet changing demands, allowing businesses to adapt quickly to market fluctuations. </p>
+        <h2 class=" mt-4 " style=" "><u> Global Reach</u></h2>
+        <p class=" " style="font-weight:bold color:rgb(119, 114, 112); font-size:18px;">Online stores are typically open around the clock, providing flexibility for consumers with busy schedules </p>
       </div>
 
 
       <div>
-        <h2 style="font-style:italic"><u> 24/7 Availability </u></h2>
-        <p class="text-light" style="font-weight:bold">Online stores are typically open around the clock, providing flexibility for consumers with busy schedules.  </p>
+        <h2 class=" mt-4  style=" "><u> Scalability and Flexibility </u></h2>
+        <p class=" " style="font-weight:bold color:rgb(119, 114, 112); font-size:18px;">E-commerce platforms can easily scale up or down to meet changing demands, allowing businesses to adapt quickly to market fluctuations. </p>
+      </div>
+
+
+      <div>
+        <h2 class=" mt-4  style=" "><u> 24/7 Availability </u></h2>
+        <p class=" " style="font-weight:bold color:rgb(119, 114, 112); font-size:18px;">Online stores are typically open around the clock, providing flexibility for consumers with busy schedules.  </p>
       </div>
     </div>
     <div class="col-6 p-5">

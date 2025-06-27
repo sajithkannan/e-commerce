@@ -1,19 +1,17 @@
 from django.shortcuts import render
 
 # Create your views here.
-def index(request):
-  return render(request,"index.html")
+def home(request):
+  return render(request,"home.html")
 
 def login(request):
   return render(request,"login.html")
 
-def customer(request):
-  return render(request,"customer_register.html")
+def register(request):
+  return render(request,"registration.html")
 
-def seller(request):
-  return render(request,"seller_register.html")
+def forgot_password(request):
+    return render(request, "forgot_password.html")
 
-def order(request):
-  return render(request,"order.html")
 
 
