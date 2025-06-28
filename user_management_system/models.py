@@ -1,11 +1,26 @@
-from django.contrib.auth.models import AbstractUser, Group, Permission
-
+from django.contrib.auth.models import AbstractUser, Group,Permission,PermissionsMixin,BaseUserManager
 from django.db import models
 
 
-class CustomUser(AbstractUser):
+class CustomUserManager( BaseUserManager):
+    def create_user(self, email, password=None, **extra_fields):
+        if not email:
+            raise ValueError('The Email field must be set.')
+        email = self.normalize_email(email)
+        user = self.model(email=email, **extra_fields)
+        user.set_password(password)
+        user.save()
+        return user
+
+    def create_superuser(self, email, password=None, **extra_fields):
+        extra_fields.setdefault("is_staff", True)
+        extra_fields.setdefault("is_superuser", True)
+        return self.create_user(email, password, **extra_fields)
+
+
+
+class CustomUser(AbstractUser,PermissionsMixin):
     email = models.EmailField(unique=True)
-    phone_number = models.CharField(max_length=15)
     password = models.CharField(max_length=10)
     role = models.CharField(max_length=8)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -29,13 +44,17 @@ class CustomUser(AbstractUser):
 
 class Customer(models.Model):
     user_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    first_name = models.CharField(max_length=30,null=False,blank=False)
+    name = models.CharField(max_length=30,null=False,blank=False)
     last_name = models.CharField(max_length=30)
+    phone_number = models.CharField(max_length=15)
+    alternative_number = models.CharField(max_length=15)
     gender = models.CharField(max_length=6)
+    postal_code = models.IntegerField(6)
     address = models.TextField(max_length=255)
     land_mark = models.TextField(max_length=255)
+    country = models.CharField(max_length=50)
+    state = models.CharField(max_length=50)
     city = models.CharField(max_length=50)
-    postal_code = models.IntegerField(6)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -45,5 +64,10 @@ class Seller(models.Model):
     business_name = models.CharField(max_length=30)
     business_address = models.TextField(max_length=255)
     gst_number = models.CharField(max_length=15)
+    postal_code = models.IntegerField(6)
+    phone_number = models.CharField(max_length=15)
+    country = models.CharField(max_length=50)
+    state = models.CharField(max_length=50)
+    city = models.CharField(max_length=50)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

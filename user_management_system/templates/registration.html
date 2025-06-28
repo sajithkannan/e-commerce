@@ -1,336 +1,203 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 
 {% block title %}
- registration
+  Registration
 {% endblock title %}
 
 {% block content %}
 
-
-<div class="register_page" style="margin-top:7%;margin-bottom:5%;display:flex;justify-content:center;width:100%;align-item:center;"></div>
+<div class="register_page" style="margin-top:7%;margin-bottom:5%;display:flex;justify-content:center;width:100%;align-items:center;"></div>
 <div class="container mt-5 mb-5" style="width:40%;background-color:rgb(231, 230, 223);border-radius:15px;">
   <div class="row justify-content-center">
     <div class="col-12">
-      <h2 class="text-center text-dark mb-3 mt-5">REGISTER HERE </h2>
-      <form
-        method="POST"
-        enctype="multipart/form-data"
-      >
+      <h2 class="text-center text-dark mb-3 mt-5">REGISTER HERE</h2>
+      <form method="POST" action="{% url 'registration' %}" enctype="multipart/form-data">
         {% csrf_token %}
 
-    <!-- Email -->
-    <div class="mb-3">
-      <label for="email" class="form-label">Email</label>
-      <input type="email" class="form-control" id="email" placeholder=" " required>
-    </div>
-    <!-- Password -->
-    <div class="mb-3">
-      <label for="password" class="form-label">Password</label>
-      <input type="password" class="form-control" id="password" placeholder=" " required>
-    </div>
-    <!--role-->
-    <div class="mb-3">
-      <label for="Add more information" class="form-label">Select choice for more information </label>
-        <select name="role" class="form-select" id="roleSelect">
-          <option selected disabled> choose your role</option>
-          <option value="customer">Customer</option>
-          <option value="seller">Seller</option>
-        </select>
-     </div>  
-    <!-- customer Fields -->
-    <div id="customer-fields">
-      <!--name-->
-      <div class="mb-3">
-        <input
-          type="text"
-          name="name"
-          class="form-control"
-          placeholder="Name"
-          required
-        />
-      </div>
-
-         <div class="mb-3">
-          <input
-            type="text"
-            name="last_name"
-            class="form-control"
-            placeholder="LastName"
-            required
-          />
-        </div>
-        
-         <div class="mb-3">
-          <input
-            type=" integer "
-            name="phone_number"
-            class="form-control"
-            placeholder="Phone Number"
-            required
-          />
+        <!-- Email -->
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" name="email" id="email" required>
         </div>
 
-         <div class="mb-3">
-          <input
-            type=" integer "
-            name="alternative_number"
-            class="form-control"
-            placeholder="Alternative Number"
-            required
-          />
+        <!-- Password -->
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" name="password" id="password" required>
         </div>
 
-         <div class="mb-3">
-          <select name="gender" class="form-select" >
-            <option value="" selected disabled>select your gender</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            <option value="Other">Other</option>
-           </select> 
+        <!-- Role -->
+        <div class="mb-3">
+          <label for="roleSelect" class="form-label">Select Role</label>
+          <select name="role" class="form-select" id="roleSelect" required>
+            <option selected disabled>Choose your role</option>
+            <option value="customer">Customer</option>
+            <option value="seller">Seller</option>
+          </select>
         </div>
 
-
-         <div class="mb-3">
-          <input
-            type=" integer "
-            name="pin_number"
-            class="form-control"
-            placeholder=" Pin Code"
-            required
-          />
-        </div>
-
-           <div class="mb-3">
-          <textarea
-            name="address"
-            class="form-control"
-            placeholder="Address"
-          ></textarea>
-        </div>
-
-           <div class="mb-3">
-          <textarea
-            name="address"
-            class="form-control"
-            placeholder=" Land mark "
-          ></textarea>
-        </div>
-
-        
+        <!-- Customer Fields -->
+        <div id="customer-fields" style="display:none;">
           <div class="mb-3">
-          <input
-           type="text"
-            name=" country "
-            class="form-control"
-            placeholder=" country "
-          ></input>
-        </div>
-
-          
-          <div class="mb-3">
-          <input
-           type="text"
-            name=" state"
-            class="form-control"
-            placeholder=" state "
-          ></input>
-        </div>
-
+            <input type="text" name="name" class="form-control" placeholder="First Name">
+          </div>
 
           <div class="mb-3">
-          <input
-           type="text"
-            name="city"
-            class="form-control"
-            placeholder="city"
-          ></input>
-        </div>
-
-        </div>
-
-        <!-- seller Fields -->
-        <div id="seller-fields">
-
-             <div class="mb-3">
-          <input
-          type="text"
-            name="business-name"
-            class="form-control"
-            placeholder=" Business Name"
-          ></input>
-        </div>
-
-    
-      <div class="mb-3">
-  <select id="category" name="category" class="form-select" onchange="updateSubcategories()">
-    <option value="" selected disabled>Select Category</option>
-    <option value="Electronics">Electronics</option>
-    <option value="Fashion">Fashion</option>
-    <option value="Home & Kitchen">Home & Kitchen</option>
-    <option value="Beauty & Personal Care">Beauty & Personal Care</option>
-    <option value="Groceries & Essentials">Groceries & Essentials</option>
-    <option value="Sports & Fitness">Sports & Fitness</option>
-    <option value="Books & Stationery">Books & Stationery</option>
-    <option value="Toys & Baby Products">Toys & Baby Products</option>
-    <option value="Automotive">Automotive</option>
-    <option value="Health & Wellness">Health & Wellness</option>
-    <option value="Other category">Other category</option>
-  </select>
-
-  <select id="subcategory" class="form-select mt-3 mb-3">
-    <option value="" selected disabled>Select Subcategory</option>
-  </select>
-
-    <input type="text" id="custom-subcategory" class="form-control mt-3" placeholder="Enter Subcategory" style="display: none;">
-</div>
-
-             <div class="mb-3">
-          <textarea
-            name="business-address"
-            class="form-control"
-            placeholder=" Business Address"
-          ></textarea>
-        </div>
-
-             <div class="mb-3">
-                   <input type="text" 
-                   class="form-control" 
-                   id="gstNumber"
-                    placeholder="Enter GST Number">
-                </div>
-
-         <div class="mb-3">
-          <input
-            type=" integer "
-            name="pin_number"
-            class="form-control"
-            placeholder=" Pin Code"
-            required
-          />
-        </div>
+            <input type="text" name="lastName" class="form-control" placeholder="Last Name">
+          </div>
 
           <div class="mb-3">
-          <input
-            type=" integer "
-            name="phone_number"
-            class="form-control"
-            placeholder="Phone Number"
-            required
-          />
-        </div>
-
-           <div class="mb-3">
-          <input
-           type="text"
-            name=" country "
-            class="form-control"
-            placeholder=" country "
-          ></input>
-        </div>
-
-          
-          <div class="mb-3">
-          <input
-           type="text"
-            name=" state"
-            class="form-control"
-            placeholder=" state "
-          ></input>
-        </div>
-
+            <input type="number" name="phone" class="form-control" placeholder="Phone Number">
+          </div>
 
           <div class="mb-3">
-          <input
-           type="text"
-            name="city"
-            class="form-control"
-            placeholder="city"
-          ></input>
+            <input type="number" name="alternative" class="form-control" placeholder="Alternative Number">
+          </div>
+
+          <div class="mb-3">
+            <select name="gender" class="form-select">
+              <option selected disabled>Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <input type="number" name="pinCode" class="form-control" placeholder="Pin Code">
+          </div>
+
+          <div class="mb-3">
+            <textarea name="address" class="form-control" placeholder="Address"></textarea>
+          </div>
+
+          <div class="mb-3">
+            <textarea name="landmark" class="form-control" placeholder="Landmark"></textarea>
+          </div>
+
+          <div class="mb-3">
+            <input type="text" name="country" class="form-control" placeholder="Country">
+          </div>
+
+          <div class="mb-3">
+            <input type="text" name="state" class="form-control" placeholder="State">
+          </div>
+
+          <div class="mb-3">
+            <input type="text" name="city" class="form-control" placeholder="City">
+          </div>
         </div>
 
+        <!-- Seller Fields -->
+        <div id="seller-fields" style="display:none;">
+          <div class="mb-3">
+            <input type="text" name="business_name" class="form-control" placeholder="Business Name">
+          </div>
+
+          <div class="mb-3">
+            <select id="category" name="category" class="form-select" onchange="updateSubcategories()">
+              <option selected disabled>Select Category</option>
+              <option value="Electronics">Electronics</option>
+              <option value="Fashion">Fashion</option>
+              <option value="Home & Kitchen">Home & Kitchen</option>
+              <option value="Beauty & Personal Care">Beauty & Personal Care</option>
+              <option value="Groceries & Essentials">Groceries & Essentials</option>
+              <option value="Sports & Fitness">Sports & Fitness</option>
+              <option value="Books & Stationery">Books & Stationery</option>
+              <option value="Toys & Baby Products">Toys & Baby Products</option>
+              <option value="Automotive">Automotive</option>
+              <option value="Health & Wellness">Health & Wellness</option>
+              <option value="Other category">Other category</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <select id="subcategory" name="subcategory" class="form-select">
+              <option selected disabled>Select Subcategory</option>
+            </select>
+            <input type="text" id="custom-subcategory" name="custom_subcategory" class="form-control mt-3" placeholder="Enter Subcategory" style="display:none;">
+          </div>
+
+          <div class="mb-3">
+            <textarea name="business_address" class="form-control" placeholder="Business Address"></textarea>
+          </div>
+
+          <div class="mb-3">
+            <input type="text" name="gst_number" class="form-control" placeholder="GST Number">
+          </div>
         </div>
 
-        <div class="d-flex justify-content-center w-100 mt-3 mb-5 ">
-          <button type="submit" class="btn btn-dark w-25">REGISTER</button>
+        <div class="d-flex justify-content-center w-100 mt-3 mb-5">
+          <button type="submit" class="btn btn-dark w-50">REGISTER</button>
         </div>
 
         {% if error %}
-        <p class="text-danger text-center">{{ error }}</p>
+          <p class="text-danger text-center">{{ error }}</p>
         {% endif %}
-
-         <script>
-          const roleSelect = document.getElementById("roleSelect");
-          const customerFields = document.getElementById("customer-fields");
-          const sellerFields = document.getElementById("seller-fields");
-          
-      
-          function toggleFields() {
-            if (roleSelect.value === "customer") {
-              customerFields.style.display = "block";
-              sellerFields.style.display = "none";
-            } 
-            else if(roleSelect.value === "seller")  {
-              customerFields.style.display = "none";
-              sellerFields.style.display = "block";
-            }
-              else  {
-              customerFields.style.display = "none";
-              sellerFields.style.display = "none";
-            }
-          }
-          roleSelect.addEventListener("change", toggleFields);
-          document.addEventListener("DOMContentLoaded", toggleFields);
-
-
-          const subcategories = {
-            "Electronics": ["Mobiles", "Laptops", "Cameras", "Accessories","Appliances"],
-            "Fashion": ["Men's Clothing", "Women's Clothing", "Footwear","Kid’s Clothing","Watches & Accessories"],
-            "Home & Kitchen": ["Furniture", "Home Decor", "Kitchen Appliances","Cookware & Dining"],
-            "Beauty & Personal Care": ["Skincare", "PersonalCare", "HairCare","Makeup","Grooming Tool"],
-            "Groceries & Essentials": ["Fruits & Vegetables", "Dairy & Bakery", "Snacks & Beverages","Household Supplies"],
-            "Sports & Fitness": ["Exercise Equipment", "ActiveWear", "Sports Gear","Supplements"],
-            "Books & Stationery": ["Academic Books", "Novels", "Office Supplies","Art & Craft"],
-            "Toys & Baby Products": ["Toys", "Baby Care", "Kids'Fashion "],
-            "Automotive": ["Car Accessories", "Bike Accessories", "Lubricants & Oils"],
-            "Health & Wellness": ["Medicines", "Health Devices","Vitamins & Supplements"]
-          };
-
-
-  function updateSubcategories() {
-  const categorySelect = document.getElementById("category");
-  const subcategorySelect = document.getElementById("subcategory");
-  const customSubcategory = document.getElementById("custom-subcategory");
-  const selectedCategory = categorySelect.value;
-
-  // If "Other category" selected, hide dropdown and show text input
-  if (selectedCategory === "Other category") {
-    subcategorySelect.style.display = "none";
-    customSubcategory.style.display = "block";
-    customSubcategory.value = "";  // Clear previous value if any
-    return;
-  }
-
-  // Else show subcategory dropdown and hide custom input
-  customSubcategory.style.display = "none";
-  subcategorySelect.style.display = "block";
-
-  // Clear previous options
-  subcategorySelect.innerHTML = '<option value="" selected disabled>Select Subcategory</option>';
-
-  // Populate subcategories if available
-  if (subcategories[selectedCategory]) {
-    subcategories[selectedCategory].forEach(function(sub) {
-      const option = document.createElement("option");
-      option.value = sub;
-      option.text = sub;
-      subcategorySelect.appendChild(option);
-    });
-  }
-}
-        </script>
       </form>
     </div>
   </div>
 </div>
+
+<script>
+  const roleSelect = document.getElementById("roleSelect");
+  const customerFields = document.getElementById("customer-fields");
+  const sellerFields = document.getElementById("seller-fields");
+
+  function toggleFields() {
+    if (roleSelect.value === "customer") {
+      customerFields.style.display = "block";
+      sellerFields.style.display = "none";
+    } else if (roleSelect.value === "seller") {
+      customerFields.style.display = "none";
+      sellerFields.style.display = "block";
+    } else {
+      customerFields.style.display = "none";
+      sellerFields.style.display = "none";
+    }
+  }
+  roleSelect.addEventListener("change", toggleFields);
+  document.addEventListener("DOMContentLoaded", toggleFields);
+
+  const subcategories = {
+    "Electronics": ["Mobiles", "Laptops", "Cameras", "Accessories", "Appliances"],
+    "Fashion": ["Men's Clothing", "Women's Clothing", "Footwear", "Kid’s Clothing", "Watches & Accessories"],
+    "Home & Kitchen": ["Furniture", "Home Decor", "Kitchen Appliances", "Cookware & Dining"],
+    "Beauty & Personal Care": ["Skincare", "PersonalCare", "HairCare", "Makeup", "Grooming Tool"],
+    "Groceries & Essentials": ["Fruits & Vegetables", "Dairy & Bakery", "Snacks & Beverages", "Household Supplies"],
+    "Sports & Fitness": ["Exercise Equipment", "ActiveWear", "Sports Gear", "Supplements"],
+    "Books & Stationery": ["Academic Books", "Novels", "Office Supplies", "Art & Craft"],
+    "Toys & Baby Products": ["Toys", "Baby Care", "Kids' Fashion"],
+    "Automotive": ["Car Accessories", "Bike Accessories", "Lubricants & Oils"],
+    "Health & Wellness": ["Medicines", "Health Devices", "Vitamins & Supplements"]
+  };
+
+  function updateSubcategories() {
+    const categorySelect = document.getElementById("category");
+    const subcategorySelect = document.getElementById("subcategory");
+    const customSubcategory = document.getElementById("custom-subcategory");
+    const selectedCategory = categorySelect.value;
+
+    if (selectedCategory === "Other category") {
+      subcategorySelect.style.display = "none";
+      customSubcategory.style.display = "block";
+      customSubcategory.value = "";
+      return;
+    }
+
+    customSubcategory.style.display = "none";
+    subcategorySelect.style.display = "block";
+    subcategorySelect.innerHTML = '<option selected disabled>Select Subcategory</option>';
+
+    if (subcategories[selectedCategory]) {
+      subcategories[selectedCategory].forEach(function (sub) {
+        const option = document.createElement("option");
+        option.value = sub;
+        option.text = sub;
+        subcategorySelect.appendChild(option);
+      });
+    }
+  }
+</script>
 
 {% endblock %}
