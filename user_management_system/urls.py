@@ -4,16 +4,20 @@ from user_management_system.views import home,login_view,registration,forgot_pas
 
 app_name = 'user_management_system'  
 
+
+from django.urls import path
+from . import views
+
 urlpatterns = [
-    # path('admin/', admin.site.urls),
-    path('/', home, name="home"),
-    path('registration/',registration, name='registration'),
-    path('login/',login_view, name='login'),
-    path('logout/',logout_view, name='logout'),
-    path('profile/',user_profile, name='profile'),
-    path('forgot-password/',forgot_password, name='forgot_password'),
-    path('features/',features, name='features'),
-    path('support/',support, name='support')
+    
+    path('registration/', views.registration, name='registration'),
+    path('login/', views.login_view, name='login'),
+    path('logout/', views.logout_view, name='logout'),
+    path('profile/', views.user_profile, name='profile'),
+    path('forgot-password/', views.forgot_password, name='forgot_password'),
+    path('features/', views.features, name='features'),
+    path('support/', views.support, name='support'),
 ]
+
 
 
